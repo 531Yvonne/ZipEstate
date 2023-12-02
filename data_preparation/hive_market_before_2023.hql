@@ -65,9 +65,8 @@ TBLPROPERTIES ("skip.header.line.count"="1");
 -- Run a test query to make sure the above worked correctly
 SELECT period_begin, period_end, region, median_sale_price from yvesyang_before2023_csv limit 5;
 
-
 -- Create an ORC table for the above data
-CREATE TABLE yvesyang_before2023(
+CREATE TABLE yvesyang_before2023_orc(
     period_begin string,
     period_end string,
     period_duration tinyint,
@@ -122,7 +121,7 @@ CREATE TABLE yvesyang_before2023(
 STORED AS ORC;
 
 -- Copy the CSV table to the ORC table
-INSERT OVERWRITE TABLE yvesyang_before2023
+INSERT OVERWRITE TABLE yvesyang_before2023_orc
 SELECT * 
 FROM yvesyang_before2023_csv
 WHERE period_begin is not null and period_end is not null

@@ -16,5 +16,5 @@ STORED AS TEXTFILE
 LOCATION '/yvesyang/zipcode'
 TBLPROPERTIES ("skip.header.line.count"="1");
 
--- Test our table
+-- Test the table
 SELECT * FROM yvesyang_zipcode_city LIMIT 5;
