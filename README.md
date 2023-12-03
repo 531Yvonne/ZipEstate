@@ -4,8 +4,10 @@
 
 A Big Data Application built with
 
-- Over 7.4 Million data records covering 10-year quarterly US real estate market transaction information at zipcode level
-- Over 42 Thousand data records covering all US zipcode and corresponding primary city information.
+- Over 7.4 Million data records covering 10-year US real estate market transaction information at zipcode level
+- Over 42 Thousand data records covering all US zipcode and corresponding primary city information
+- Implemented using a Lambda Architecture (Batch Layer, Serving Layer, Speed Layer)
+- Tools used: AWS EMR, Hadoop, Hive, Spark, HBase, Node.js, Kafka
 
 ## Data Preparation
 
@@ -37,15 +39,16 @@ Launch Hive in EMR: beeline -u jdbc:hive2://localhost:10000/default -n hadoop -d
 
 Create Hive Table from raw source csv files
 
-- yvesyang_before2023_csv: contains all market data before 2023
-- yvesyang_after2023_csv: contains all market data after 2023
+- yvesyang_market_csv: contains all market data before 2023
+- yvesyang_market_update_csv: contains all market data after 2023
 - yvesyang_zipcode: contains US zipcode and corresponding primary city information
 
-- yvesyang_before2023_orc: rewrite the yvesyang_before2023_csv table into ORC format
+- yvesyang_market_orc: rewrite the yvesyang_before2023_csv table into ORC format
+  https://orc.apache.org/docs/
 
 Join US zipcode-city data and US Housing Market data to enable user's query by both zipcode and city name
 
-- yvesyang_combined_before2023
+- yvesyang_market_and_zip
 
 #### HBase Table
 
@@ -53,7 +56,7 @@ Extract Essential Data from the combined hive big table and Write to HBase
 
 Launch HBase using "hbase shell"
 Create HBase table:
-create 'yvesyang_housing_market_data', 'md'
+create 'yvesyang_zip_estate', 'md'
 
 Write Essential Data to HBase for user query
 

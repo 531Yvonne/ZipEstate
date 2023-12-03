@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zip Estate</title>
+  <link rel="stylesheet" type="text/css" href="search.css">
+</head>
+
+<body>
+<form action="/market_data.html" method="get" target="results_iframe">
+  <label>
+    <span>Year:</span>
+    <input type="text" name="year" value="2020" />
+  </label>
+  <label>
+    <span>Month:</span>
+    <input type="text" name="month" value="10" />
+  </label>
+  <label>
+    <span>Zipcode:</span>
+    <input type="text" name="zipcode" value="60607" />
+  </label>
+  <label>
+    <span>Property Type:</span>
+    <select name="type">
+      <option value="-1">All Residential</option>
+      <option value="6">Single Family</option>
+      <option value="13">Townhouse</option>
+      <option value="3">Condo/Co-op</option>
+      <option value="4">Multi-Family (2-4 Unit)</option>
+    </select>
+  </label>
+  <label> <span></span> <input type="submit" value="Submit" /> </label>
+</form>
+
+<iframe name="results_iframe"></iframe>
+</body>
+
+</html>

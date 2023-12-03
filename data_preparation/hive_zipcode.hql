@@ -4,8 +4,8 @@ CREATE EXTERNAL TABLE yvesyang_zipcode_city(
     zip string,
     primary_city string,
     state string,
-    latitude decimal,
-    longitude decimal,
+    latitude double,
+    longitude double,
     city_state string)
 ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'
 WITH SERDEPROPERTIES (

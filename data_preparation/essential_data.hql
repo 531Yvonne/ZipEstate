@@ -6,23 +6,23 @@ CREATE TABLE yvesyang_market_essentials(
     zipcode string,
     city string,
     state string,
-    latitude decimal,
-    longitude decimal,
+    latitude double,
+    longitude double,
     city_state string,
     property_type string,
     property_type_id tinyint,
-    median_sale_price decimal,
-    median_list_price decimal,
-    median_ppsf decimal,
-    median_list_ppsf decimal,
-    homes_sold decimal,
-    pending_sales decimal,
-    new_listings decimal,
-    inventory decimal,
-    median_dom decimal,
-    avg_sale_to_list decimal,
-    sold_above_list decimal,
-    off_market_in_two_weeks decimal)
+    median_sale_price double,
+    median_list_price double,
+    median_ppsf double,
+    median_list_ppsf double,
+    homes_sold double,
+    pending_sales double,
+    new_listings double,
+    inventory double,
+    median_dom double,
+    avg_sale_to_list double,
+    sold_above_list double,
+    off_market_in_two_weeks double)
 STORED AS ORC;
 
 INSERT OVERWRITE TABLE yvesyang_market_essentials
@@ -49,7 +49,7 @@ SELECT
     avg_sale_to_list,
     sold_above_list,
     off_market_in_two_weeks
-FROM yvesyang_combined_before2023;
+FROM yvesyang_market_and_zip;
 
 -- Test the table
 SELECT year, month, city_state, property_type,
