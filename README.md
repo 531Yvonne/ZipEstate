@@ -62,7 +62,7 @@ Write Essential Data to HBase for user query
 
 ## Data Presentation
 
-#### Web UI
+### Query
 
 To query HBase, use HBase' REST interface, Creating a tunnel on port 8070
 
@@ -72,9 +72,19 @@ Node.js Application using JavaScript
 
 Open localhost:8070
 
-#### Generative AI (additional features)???
+### Map Demonstration
 
-Add generative map to the web ui? openstreetmap
+Add openstreetmap
+
+## Data Streaming
+
+### Web Submission
+
+Create submit-data.html for market updates submission
+
+### Kafka
+
+Add openstreetmap
 
 ## Video Demo
 
