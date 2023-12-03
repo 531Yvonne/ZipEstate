@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html>
+  <head>
+    <title>Submit Data</title>
+    <link type="text/css" rel="stylesheet" href="/search.css" />
+  </head>
+  <body>
+    <h2
+      style="
+        margin-left: 30%;
+        text-align: center;
+        display: inline-block;
+        color: #5e5e5e;
+        background: #ffffff;
+      "
+    >
+      &nbsp;Submit Market Data&nbsp;
+    </h2>
+    <form action="/market_updates.html" method="get" target="results_iframe">
+      <label>
+        <span>Year:</span>
+        <input type="text" name="year" value="yyyy" />
+      </label>
+      <label>
+        <span>Month:</span>
+        <input type="text" name="month" value="m" />
+      </label>
+      <label>
+        <span>Zipcode:</span>
+        <input type="text" name="zipcode" value="xxxxx" />
+      </label>
+      <label>
+        <span>Property Type:</span>
+        <select name="type">
+          <option value="-1">All Residential</option>
+          <option value="6">Single Family</option>
+          <option value="13">Townhouse</option>
+          <option value="3">Condo/Co-op</option>
+          <option value="4">Multi-Family (2-4 Unit)</option>
+        </select>
+      </label>
+      <label>
+        <span>Median Sale Price:</span>
+        <input type="text" name="median_sale_price" />
+      </label>
+      <label>
+        <span>Median List Price:</span>
+        <input type="text" name="median_list_price" />
+      </label>
+      <label>
+        <span>Home Sold:</span>
+        <input type="text" name="home_sold" />
+      </label>
+      <label>
+        <span>Pending Sales:</span>
+        <input type="text" name="pending_sales" />
+      </label>
+      <label>
+        <span>New Listings:</span>
+        <input type="text" name="new_listings" />
+      </label>
+      <label>
+        <span>Inventory:</span>
+        <input type="text" name="inventory" />
+      </label>
+      <label>
+        <span>Median DOM:</span>
+        <input type="text" name="median_dom" />
+      </label>
+      <label>
+        <span>Off Market in 2-Week:</span>
+        <input type="text" name="off_market_in_two_weeks" />
+      </label>
+      <label> <span></span> <input type="submit" value="Submit" /> </label>
+    </form>
+    <iframe name="results_iframe" />
+  </body>
+</html>

@@ -1,55 +1,54 @@
 body {
-    font-family: 'Helvetica Neue', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-image: URL('background.jpg');
-    background-repeat: no-repeat;
-    background-position: center top;
-    -webkit-background-size: 100%;
-    -moz-background-size: 100%;
-    -o-background-size: 100%;
-    background-size: 100%;
+  font-family: "Helvetica Neue", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-image: URL("background.jpg");
+  background-repeat: no-repeat;
+  background-position: center top;
+  -webkit-background-size: 100%;
+  -moz-background-size: 100%;
+  -o-background-size: 100%;
+  background-size: 100%;
 }
 
 form {
-    width: 60%;
-    max-width: 500px;
-    margin: 1% auto;
-    background-color: rgba(255, 255, 255, 0.7);
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 60%;
+  max-width: 500px;
+  margin: 1% auto;
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 label {
-    display: block;
-    margin-bottom: 10px;
+  display: block;
+  margin-bottom: 10px;
 }
 
 input,
 select {
-    box-sizing: border-box;
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
 input[type="submit"] {
-    background-color: #007BFF;
-    color: #fff;
-    cursor: pointer;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
 }
 
 iframe {
-    width: 80%;
-    max-width: 800px;
-    height: 400px;
-    margin: 5% auto;
-    display: block;
-    border: none;
-    overflow: hidden;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  max-width: 800px;
+  height: 400px;
+  margin: 5% auto;
+  display: block;
+  border: none;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-
