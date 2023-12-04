@@ -19,7 +19,8 @@ CREATE EXTERNAL TABLE yvesyang_zip_estate(
     new_listings bigint,
     inventory bigint,
     median_dom bigint,
-    off_market_in_two_weeks bigint)
+    off_market_in_two_weeks bigint,
+    from_batch_layer boolean)
 STORED BY 'org.apache.hadoop.hive.hbase.HBaseStorageHandler'
 WITH SERDEPROPERTIES ('hbase.columns.mapping' = ':key,
     md:year,
@@ -39,7 +40,8 @@ WITH SERDEPROPERTIES ('hbase.columns.mapping' = ':key,
     md:new_listings,
     md:inventory,
     md:median_dom,
-    md:off_market_in_two_weeks')
+    md:off_market_in_two_weeks,
+    md:from_batch_layer')
 TBLPROPERTIES ('hbase.table.name' = 'yvesyang_zip_estate');
 
 
@@ -55,7 +57,8 @@ SELECT
     new_listings,
     inventory,
     median_dom,
-    off_market_in_two_weeks
+    off_market_in_two_weeks,
+    TRUE as from_batch_layer
 FROM yvesyang_market_essentials;
 
 -- Test

@@ -51,3 +51,30 @@ iframe {
   border: none;
   overflow: hidden;
 }
+
+.tab-content {
+  display: none;
+}
+
+.active-tab {
+  display: block;
+}
+
+.tab-buttons {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.tab-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin: 0 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.tab-button:hover {
+  background-color: #0056b3;
+}

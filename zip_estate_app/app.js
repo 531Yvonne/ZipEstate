@@ -20,15 +20,15 @@ function rowToMap(row) {
   return stats;
 }
 
-hclient
-  .table("yvesyang_zip_estate")
-  .row("2022_10_60607_-1")
-  .get((error, value) => {
-    console.info(rowToMap(value));
-    // console.info(value);
-  });
+// hclient
+//   .table("yvesyang_zip_estate")
+//   .row("2022_10_60607_-1")
+//   .get((error, value) => {
+//     console.info(rowToMap(value));
+//     // console.info(value);
+//   });
 
-app.get("/market_data.html", function (req, res) {
+app.get("/zip_data.html", function (req, res) {
   const record_key =
     req.query["year"] +
     "_" +
@@ -71,6 +71,51 @@ app.get("/market_data.html", function (req, res) {
     });
 });
 app.use(express.static("public"));
+
+app.get("/city_data.html", function (req, res) {
+  const record_key =
+    req.query["year"] +
+    "_" +
+    req.query["month"] +
+    "_" +
+    req.query["city"] +
+    ", " +
+    req.query["state"] +
+    "_" +
+    req.query["type"];
+  console.log(record_key);
+
+  hclient
+    .table("yvesyang_city_estate")
+    .row(record_key)
+    .get(function (err, record) {
+      const dataResult = rowToMap(record);
+      console.log(dataResult);
+
+      var template = filesystem.readFileSync("result.mustache").toString();
+      var html = mustache.render(template, {
+        year: req.query["year"],
+        month: req.query["month"],
+        type: req.query["type"],
+        city: req.query["city"],
+        state: req.query["state"],
+        latitude: dataResult["mdc:latitude"],
+        longitude: dataResult["mdc:longitude"],
+        city_state: dataResult["mdc:city_state"],
+        property_type: dataResult["mdc:property_type"],
+        property_type_id: dataResult["mdc:property_type_id"],
+        median_sale_price: dataResult["mdc:median_sale_price"],
+        median_list_price: dataResult["mdc:median_list_price"],
+        home_sold: dataResult["mdc:homes_sold"],
+        pending_sales: dataResult["mdc:pending_sales"],
+        new_listings: dataResult["mdc:new_listings"],
+        inventory: dataResult["mdc:inventory"],
+        median_dom: dataResult["mdc:median_dom"],
+        off_market_in_two_weeks: dataResult["mdc:off_market_in_two_weeks"],
+      });
+      res.send(html);
+    });
+});
 
 /* Send simulated weather to kafka */
 var kafka = require("kafka-node");
