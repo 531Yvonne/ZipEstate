@@ -25,8 +25,6 @@ HDFS File Structure:
 ./yvesyang
     /zipcode
         /zipcode_city.csv
-    /new_2023_data
-        /zip_market_after_2023.csv
     /history_data
         /zip_market_before_2023.csv
 ```
@@ -35,7 +33,7 @@ HDFS File Structure:
 
 Launch Hive in EMR: beeline -u jdbc:hive2://localhost:10000/default -n hadoop -d org.apache.hive.jdbc.HiveDriver
 
-#### Hive Table
+#### Batch Layer with Hive Table
 
 Create Hive Table from raw source csv files
 
@@ -50,7 +48,7 @@ Join US zipcode-city data and US Housing Market data to enable user's query by b
 
 - yvesyang_market_and_zip
 
-#### HBase Table
+#### Serving Layer with HBase Table
 
 Extract Essential Data from the combined hive big table and Write to HBase
 
@@ -84,12 +82,29 @@ Create a new topic yvesyang_data_updates in Kafka to catch real-time data submis
 
 ./kafka-topics.sh --create --zookeeper z-3.mpcs53014kafka.o5ok5i.c4.kafka.us-east-2.amazonaws.com:2181,z-1.mpcs53014kafka.o5ok5i.c4.kafka.us-east-2.amazonaws.com:2181,z-2.mpcs53014kafka.o5ok5i.c4.kafka.us-east-2.amazonaws.com:2181 --replication-factor 2 --partitions 1 --topic yvesyang_data_updates
 
+Use the console consumer to see new data record :
+./kafka-console-consumer.sh --bootstrap-server b-1.mpcs53014kafka.o5ok5i.c4.kafka.us-east-2.amazonaws.com:9092 --topic yvesyang_data_updates --from-beginning
+
 ### Web Submission
 
 Create submit-data.html for market updates submission
 
+ssh -i ~/.ssh/yvesyang_mpcs53014.pem ec2-user@ec2-3-143-113-170.us-east-2.compute.amazonaws.com
+
+/yvesyang/zip_estate
+
+node app.js 3059 ec2-3-131-137-149.us-east-2.compute.amazonaws.com 8070 b-1.mpcs53014kafka.o5ok5i.c4.kafka.us-east-2.amazonaws.com:9092
+
 Submit data updates manually at:
 http://ec2-3-143-113-170.us-east-2.compute.amazonaws.com:3059/submit-data.html
+
+### Data Streaming
+
+Write Code to Stream Kafka Data Updates to Hbase
+
+Maven Install and Deploy to the Hadoop Cluster
+
+spark-submit --master local[2] --driver-java-options "-Dlog4j.configuration=file:///home/hadoop/ss.log4j.properties" --class StreamUpdates uber-process_data_updates-1.0-SNAPSHOT.jar b-1.mpcs53014kafka.o5ok5i.c4.kafka.us-east-2.amazonaws.com:9092
 
 ## Video Demo
 

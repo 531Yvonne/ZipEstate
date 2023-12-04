@@ -11,33 +11,11 @@ const port = Number(process.argv[2]);
 const hbase = require("hbase");
 var hclient = hbase({ host: process.argv[3], port: Number(process.argv[4]) });
 
-const columnsToConvert = [
-  "md:median_sale_price",
-  "md:median_list_price",
-  "md:homes_sold",
-  "md:pending_sales",
-  "md:new_listings",
-  "md:inventory",
-  "md:median_dom",
-  "md:off_market_in_two_weeks",
-];
-
-function binaryToNumber(c) {
-  return Number(Buffer.from(c, "latin1").readBigInt64BE());
-}
 function rowToMap(row) {
   var stats = {};
   row.forEach(function (item) {
     const column = item["column"];
-
-    // Check if the column is in the list of columns to convert
-    if (columnsToConvert.includes(column)) {
-      // Call counterToNumber only for the specified columns
-      stats[column] = binaryToNumber(item["$"]);
-    } else {
-      // For columns not in the list, directly assign the value
-      stats[column] = item["$"];
-    }
+    stats[column] = item["$"];
   });
   return stats;
 }
@@ -115,11 +93,14 @@ app.get("/market_updates.html", function (req, res) {
   var median_dom_val = req.query["median_dom"];
   var off_market_in_two_weeks_val = req.query["off_market_in_two_weeks"];
 
+  var record_key_val =
+    year_val + "_" + month_val + "_" + zipcode_val + "_" + type_val;
   var report = {
+    record_key: record_key_val,
     year: year_val,
     month: month_val,
     zipcode: zipcode_val,
-    type: type_val,
+    property_type: type_val,
     median_sale_price: median_sale_price_val,
     median_list_price: median_list_price_val,
     home_sold: home_sold_val,
@@ -133,7 +114,9 @@ app.get("/market_updates.html", function (req, res) {
   kafkaProducer.send(
     [{ topic: "yvesyang_data_updates", messages: JSON.stringify(report) }],
     function (err, data) {
-      console.log(err);
+      if (err) {
+        console.error(err);
+      }
       console.log(report);
     }
   );
