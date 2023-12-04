@@ -7,7 +7,7 @@ A Big Data Application built with
 - Over 7.4 Million data records covering 10-year US real estate market transaction information at zipcode level
 - Over 42 Thousand data records covering all US zipcode and corresponding primary city information
 - Implemented using a Lambda Architecture (Batch Layer, Serving Layer, Speed Layer)
-- Tools used: AWS EMR, Hadoop, Hive, Spark, HBase, Node.js, Kafka
+- Tools used: AWS EMR, Hadoop, Hive, Spark, HBase, Kafka, Node.js
 
 ## Data Preparation
 
