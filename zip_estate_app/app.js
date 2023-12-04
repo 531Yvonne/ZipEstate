@@ -76,7 +76,7 @@ app.get("/market_data.html", function (req, res) {
         city: dataResult["md:city"],
         state: dataResult["md:state"],
         latitude: dataResult["md:latitude"],
-        longitude:dataResult["md:longitude"],
+        longitude: dataResult["md:longitude"],
         city_state: dataResult["md:city_state"],
         property_type: dataResult["md:property_type"],
         property_type_id: dataResult["md:property_type_id"],
@@ -87,7 +87,7 @@ app.get("/market_data.html", function (req, res) {
         new_listings: dataResult["md:new_listings"],
         inventory: dataResult["md:inventory"],
         median_dom: dataResult["md:median_dom"],
-        off_market_in_two_weeks: dataResult["md:off_market_in_two_weeks"]
+        off_market_in_two_weeks: dataResult["md:off_market_in_two_weeks"],
       });
       res.send(html);
     });
@@ -101,37 +101,40 @@ var KeyedMessage = kafka.KeyedMessage;
 var kafkaClient = new kafka.KafkaClient({ kafkaHost: process.argv[5] });
 var kafkaProducer = new Producer(kafkaClient);
 
-app.get("/weather.html", function (req, res) {
-  var station_val = req.query["station"];
-  var fog_val = req.query["fog"] ? true : false;
-  var rain_val = req.query["rain"] ? true : false;
-  var snow_val = req.query["snow"] ? true : false;
-  var hail_val = req.query["hail"] ? true : false;
-  var thunder_val = req.query["thunder"] ? true : false;
-  var tornado_val = req.query["tornado"] ? true : false;
+app.get("/market_updates.html", function (req, res) {
+  var year_val = req.query["year"];
+  var month_val = req.query["month"];
+  var zipcode_val = req.query["zipcode"];
+  var type_val = req.query["type"];
+  var median_sale_price_val = req.query["median_sale_price"];
+  var median_list_price_val = req.query["median_list_price"];
+  var home_sold_val = req.query["home_sold"];
+  var pending_sales_val = req.query["pending_sales"];
+  var new_listings_val = req.query["new_listings"];
+  var inventory_val = req.query["inventory"];
+  var median_dom_val = req.query["median_dom"];
+  var off_market_in_two_weeks_val = req.query["off_market_in_two_weeks"];
+
   var report = {
-    station: station_val,
-    clear:
-      !fog_val &&
-      !rain_val &&
-      !snow_val &&
-      !hail_val &&
-      !thunder_val &&
-      !tornado_val,
-    fog: fog_val,
-    rain: rain_val,
-    snow: snow_val,
-    hail: hail_val,
-    thunder: thunder_val,
-    tornado: tornado_val,
+    year: year_val,
+    month: month_val,
+    zipcode: zipcode_val,
+    type: type_val,
+    median_sale_price: median_sale_price_val,
+    median_list_price: median_list_price_val,
+    home_sold: home_sold_val,
+    pending_sales: pending_sales_val,
+    new_listings: new_listings_val,
+    inventory: inventory_val,
+    median_dom: median_dom_val,
+    off_market_in_two_weeks: off_market_in_two_weeks_val,
   };
 
   kafkaProducer.send(
-    [{ topic: "weather-reports", messages: JSON.stringify(report) }],
+    [{ topic: "yvesyang_data_updates", messages: JSON.stringify(report) }],
     function (err, data) {
       console.log(err);
       console.log(report);
-      res.redirect("submit-weather.html");
     }
   );
 });

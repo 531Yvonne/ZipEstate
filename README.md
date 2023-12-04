@@ -78,13 +78,18 @@ Add openstreetmap
 
 ## Data Streaming
 
+### Kafka
+
+Create a new topic yvesyang_data_updates in Kafka to catch real-time data submission made at submit-data.html
+
+./kafka-topics.sh --create --zookeeper z-3.mpcs53014kafka.o5ok5i.c4.kafka.us-east-2.amazonaws.com:2181,z-1.mpcs53014kafka.o5ok5i.c4.kafka.us-east-2.amazonaws.com:2181,z-2.mpcs53014kafka.o5ok5i.c4.kafka.us-east-2.amazonaws.com:2181 --replication-factor 2 --partitions 1 --topic yvesyang_data_updates
+
 ### Web Submission
 
 Create submit-data.html for market updates submission
 
-### Kafka
-
-Add openstreetmap
+Submit data updates manually at:
+http://ec2-3-143-113-170.us-east-2.compute.amazonaws.com:3059/submit-data.html
 
 ## Video Demo
 
