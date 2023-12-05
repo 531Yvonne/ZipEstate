@@ -75,6 +75,7 @@ object StreamUpdates {
       put.addColumn(Bytes.toBytes("md"), Bytes.toBytes("inventory"), Bytes.toBytes(wr.inventory))
       put.addColumn(Bytes.toBytes("md"), Bytes.toBytes("median_dom"), Bytes.toBytes(wr.median_dom))
       put.addColumn(Bytes.toBytes("md"), Bytes.toBytes("off_market_in_two_weeks"), Bytes.toBytes(wr.off_market_in_two_weeks))
+      put.addColumn(Bytes.toBytes("md"), Bytes.toBytes("from_batch_layer"), Bytes.toBytes(false))
       table.put(put)
     })
 
