@@ -19,15 +19,14 @@ A Big Data Application built with
 
 ## Video Demo
 
-[![Watch the video](https://img.youtube.com/vi/mTe6FmaFXeo/0.jpg)](https://youtu.be/mTe6FmaFXeo)
+[![Watch the video](https://img.youtube.com/vi/1ohA5c7-BMU/0.jpg)](https://youtu.be/1ohA5c7-BMU)
 
-## Snapshot
+## App Snapshots
 
-<img src="./app_snapshots/components.png" alt="Tech Stack" width="300"/>
-<img src="./app_snapshots/components.png" alt="Tech Stack" width="300"/>
-<img src="./app_snapshots/components.png" alt="Tech Stack" width="300"/>
-<img src="./app_snapshots/components.png" alt="Tech Stack" width="300"/>
-<img src="./app_snapshots/components.png" alt="Tech Stack" width="300"/>
+<img src="./app_snapshots/zip-search.png" alt="Zip Search" width="300"/>
+<img src="./app_snapshots/city-search.png" alt="City Search" width="300"/>
+<img src="./app_snapshots/data-submission.png" alt="Data Submission" width="300"/>
+<img src="./app_snapshots/data-update.png" alt="Data Update" width="300"/>
 <img src="./app_snapshots/components.png" alt="Tech Stack" width="300"/>
 
 # User Instruction
