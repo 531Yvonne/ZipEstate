@@ -17,6 +17,8 @@ A Big Data Application built with
 
   Data Streaming: [Kafka](https://kafka.apache.org), [Spark](https://spark.apache.org)
 
+- [Github Source](https://github.com/531Yvonne/ZipEstate)
+
 ## Video Demo
 
 [![Watch the video](https://img.youtube.com/vi/1ohA5c7-BMU/0.jpg)](https://youtu.be/1ohA5c7-BMU)
